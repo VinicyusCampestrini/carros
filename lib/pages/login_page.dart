@@ -106,8 +106,8 @@ class _LoginPageState extends State<LoginPage> {
     if (text.isEmpty) {
       return "Digite a senha";
     }
-    if (text.length < 6) {
-      return "A senha deve ter pelo menos 6 caracteres";
+    if (text.length < 3) {
+      return "A senha deve ter pelo menos 3 numeros";
     }
     return null;
   }

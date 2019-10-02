@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:novoprojetoflutter/pages/home_page.dart';
+import 'package:novoprojetoflutter/pages/login_api.dart';
+import 'package:novoprojetoflutter/utils/nav.dart';
 import 'package:novoprojetoflutter/widgets/app_button.dart';
 import 'package:novoprojetoflutter/widgets/app_text.dart';
 
@@ -65,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             AppButton(
               "Entrar",
-              onPressed: _onClickEntrar,
+              onPressed: _onClicklogin,
             ),
           ],
         ),
@@ -74,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-  _onClickEntrar() {
+  _onClicklogin() async{
     if (!_formKey.currentState.validate()) {
       return;
     }
@@ -82,7 +85,14 @@ class _LoginPageState extends State<LoginPage> {
     String entrar = _tEntrar.text;
     String senha = _tSenha.text;
 
-    print("Entrar: $entrar, Senha: $senha");
+
+    bool ok = await LoginApi.login(entrar, senha);
+
+    if(ok){
+      push(context, HomePage());
+    }else{
+      print("Login incorreto");
+    }
   }
 
   String _validateEntrar(String text) {

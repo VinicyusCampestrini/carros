@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:novoprojetoflutter/pages/usuario.dart';
 
 class LoginApi {
-  static Future<bool> login(String entrar, String senha) async {
+  static Future<Usuario> login(String entrar, String senha) async {
     var url = 'https://carros-springboot.herokuapp.com/api/v2/login';
 
     Map<String,String> headers = {
@@ -23,12 +24,9 @@ class LoginApi {
 
     Map mapResponse = json.decode(response.body);
 
-    String nome = mapResponse["nome"];
-    String email = mapResponse["email"];
+    final user = Usuario.fromJson(mapResponse);
 
-    print("nome: $nome");
-    print("Email: $email");
+    return user;
 
-    return true;
   }
 }

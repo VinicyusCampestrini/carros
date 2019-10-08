@@ -43,7 +43,7 @@ class AppText extends StatelessWidget {
       },
       style: TextStyle(
         fontSize: 25,
-        color: Colors.blue,
+        color: Colors.pink,
       ),
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -51,7 +51,6 @@ class AppText extends StatelessWidget {
         ),
         labelText: label,
         labelStyle: TextStyle(
-          fontSize: 25,
           color: Colors.grey,
         ),
         hintText: hint,

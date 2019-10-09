@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:novoprojetoflutter/pages/api_response.dart';
 import 'package:novoprojetoflutter/pages/home_page.dart';
 import 'package:novoprojetoflutter/pages/login_api.dart';
 import 'package:novoprojetoflutter/pages/usuario.dart';
+import 'package:novoprojetoflutter/utils/alert.dart';
 import 'package:novoprojetoflutter/utils/nav.dart';
 import 'package:novoprojetoflutter/widgets/app_button.dart';
 import 'package:novoprojetoflutter/widgets/app_text.dart';
@@ -87,15 +89,17 @@ class _LoginPageState extends State<LoginPage> {
     String senha = _tSenha.text;
 
 
-    Usuario user = await LoginApi.login(entrar, senha);
+    ApiResponse response = await LoginApi.login(entrar, senha);
 
-    if(user != null){
+    if(response.ok){
+
+      Usuario user = response.result;
       
       print(">>> $user");
       
       push(context, HomePage());
     }else{
-      print("Login incorreto");
+      alert(context, response.msg);
     }
   }
 

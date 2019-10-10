@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:novoprojetoflutter/pages/api_response.dart';
-import 'package:novoprojetoflutter/pages/usuario.dart';
+import 'package:novoprojetoflutter/pages/login/usuario.dart';
 
 class LoginApi {
   static Future<ApiResponse<Usuario>> login(String login, String senha) async {

@@ -42,8 +42,6 @@ class _LoginPageState extends State<LoginPage> {
 
   _body() {
 
-    _showProgress = false;
-
     return Form(
       key: _formKey,
       child: Container(
@@ -92,6 +90,10 @@ class _LoginPageState extends State<LoginPage> {
 
     String login = _tEntrar.text;
     String senha = _tSenha.text;
+
+    setState(() {
+      _showProgress = true;
+    });
 
     ApiResponse response = await LoginApi.login(login, senha);
 

@@ -6,21 +6,29 @@ class AppButton extends StatelessWidget {
 
   Function onPressed;
 
-  AppButton(this.text, {this.onPressed});
+  bool showProgress;
+
+  AppButton(this.text, {this.onPressed, this.showProgress = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 46,
       child: RaisedButton(
-        color: Colors.pink,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
+        color: Colors.blue,
+        child: showProgress
+            ? Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                ),
+              ),
         onPressed: onPressed,
       ),
     );

@@ -43,7 +43,7 @@ class AppText extends StatelessWidget {
       },
       style: TextStyle(
         fontSize: 25,
-        color: Colors.pink,
+        color: Colors.blue,
       ),
       decoration: InputDecoration(
         border: OutlineInputBorder(

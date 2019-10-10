@@ -20,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
   final _tSenha = TextEditingController();
   final _focusSenha = FocusNode();
 
+  bool _showProgress = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -30,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: Text(
+        title: Text(
           "Carros",
         ),
       ),
@@ -39,6 +41,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
+
+    _showProgress = false;
+
     return Form(
       key: _formKey,
       child: Container(
@@ -70,35 +75,33 @@ class _LoginPageState extends State<LoginPage> {
               height: 20,
             ),
             AppButton(
-              "Entrar",
+              "Login",
               onPressed: _onClicklogin,
-            ),
+              showProgress: _showProgress,
+            )
           ],
         ),
       ),
     );
   }
 
-
-  _onClicklogin() async{
+  _onClicklogin() async {
     if (!_formKey.currentState.validate()) {
       return;
     }
 
-    String entrar = _tEntrar.text;
+    String login = _tEntrar.text;
     String senha = _tSenha.text;
 
+    ApiResponse response = await LoginApi.login(login, senha);
 
-    ApiResponse response = await LoginApi.login(entrar, senha);
-
-    if(response.ok){
-
+    if (response.ok) {
       Usuario user = response.result;
-      
+
       print(">>> $user");
-      
+
       push(context, HomePage());
-    }else{
+    } else {
       alert(context, response.msg);
     }
   }

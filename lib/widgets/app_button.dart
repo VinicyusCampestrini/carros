@@ -15,7 +15,7 @@ class AppButton extends StatelessWidget {
     return Container(
       height: 46,
       child: RaisedButton(
-        color: Colors.blue,
+        color: Colors.purple,
         child: showProgress
             ? Center(
                 child: CircularProgressIndicator(

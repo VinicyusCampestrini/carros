@@ -106,6 +106,9 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       alert(context, response.msg);
     }
+    setState(() {
+      _showProgress = false;
+    });
   }
 
   String _validateLogin(String text) {
